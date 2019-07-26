@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             // https://github.com/nembery/SkilletLoader
-            image "nembery/skilletloader:test"
+            image "nembery/skilletloader:dev"
         }
     }
     environment {
