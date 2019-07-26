@@ -25,7 +25,7 @@ pipeline {
     stages {
         stage('load_full_config') {
             steps {
-                sh 'load.py -s ./templates/panos/snippets -i ${PANOS_90_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
+                sh 'load.py ./templates/panos/snippets -i ${PANOS_90_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
             }
         }
     }
