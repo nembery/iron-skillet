@@ -14,12 +14,12 @@ pipeline {
         // Any variables from the .meta-cnc file will be overridden with values from the environment
         // for this test, we will override the FW_NAME var
         FW_NAME         = "test-90-${env.BUILD_NUMBER}"
-        ADMINISTRATOR_USERNAME  = ${PANOS_AUTH_USR}
-        ADMINISTRATOR_PASSWORD  = ${PANOS_AUTH_PSW}
+        ADMINISTRATOR_USERNAME  = "${PANOS_AUTH_USR}"
+        ADMINISTRATOR_PASSWORD  = "${PANOS_AUTH_PSW}"
         MGMT_TYPE               = "static"
-        MGMT_IP                 = ${PANOS_90_IP}
-        MGMT_MASK               = ${PANOS_MASK}
-        MGMT_DG                 = ${PANOS_GW}
+        MGMT_IP                 = "${PANOS_90_IP}"
+        MGMT_MASK               = "${PANOS_MASK}"
+        MGMT_DG                 = "${PANOS_GW}"
 
     }
     stages {
