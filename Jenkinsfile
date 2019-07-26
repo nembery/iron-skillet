@@ -36,5 +36,8 @@ pipeline {
         failure {
             echo 'Could not preform load of Iron-Skillet'
         }
+        always {
+            echo "Build complete"
+        }
     }
 }
