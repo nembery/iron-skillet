@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             // https://github.com/nembery/SkilletLoader
-            image "nembery/skilletloader:dev"
+            image "nembery/skilletloader:test"
         }
     }
     environment {
@@ -25,7 +25,7 @@ pipeline {
     stages {
         stage('load_full_config') {
             steps {
-                sh 'load.py -s ./templates/panos/full -i ${PANOS_90_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
+                sh 'load.py -s ./templates/panos/snippets -i ${PANOS_90_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
             }
         }
     }
