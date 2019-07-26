@@ -3,6 +3,7 @@ pipeline {
         docker {
             // https://github.com/nembery/SkilletLoader
             image "nembery/skilletloader:dev"
+            alwaysPull true
         }
     }
     environment {
