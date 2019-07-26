@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             // https://github.com/nembery/SkilletLoader
-            // dev ensure commit action
+            // dev ensure commit action again
             image "nembery/skilletloader:dev"
             alwaysPull true
         }
