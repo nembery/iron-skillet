@@ -9,10 +9,10 @@ pipeline {
     }
     environment {
         // Grab our lab rats IP and auth information from the credentials store
-        PANOS_90_IP     = credentials('PANOS-90')
-        PANOS_AUTH      = credentials('PANOS-AUTH')
-        PANOS_GW        = credentials('PANOS_LAB_GW')
-        PANOS_MASK      = credentials('PANOS_LAB_MASK')
+        PANOS_90_IP     = credentials('PANOS_90')
+        PANOS_AUTH      = credentials('PANOS_AUTH')
+        PANOS_GW        = credentials('PANOS_GW')
+        PANOS_MASK      = credentials('PANOS_MASK')
         // Any variables from the .meta-cnc file will be overridden with values from the environment
         // for this test, we will override the FW_NAME var
         FW_NAME         = "test-90-${env.BUILD_NUMBER}"
