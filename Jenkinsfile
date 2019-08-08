@@ -33,7 +33,8 @@ pipeline {
                 echo "Loading latest dynamic content"
                 sh 'update_dynamic_content.py -i ${PANOS_90_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW} -t content'
             }
-        } stage('Load_IronSkillet') {
+        }
+        stage('Load_IronSkillet') {
             steps {
                 echo "Loading a baseline configuration"
                 sh 'load_baseline.py -i ${PANOS_90_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
