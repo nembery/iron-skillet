@@ -4,3 +4,6 @@
 <entry name="Sinkhole-IPv6">
   <ip-netmask>{{ SINKHOLE_IPV6 }}</ip-netmask>
 </entry>
+
+
+I dun goofed
