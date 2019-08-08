@@ -34,12 +34,20 @@ pipeline {
                 sh 'update_dynamic_content.py -i ${PANOS_90_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW} -t content'
             }
         }
-        stage('Load_IronSkillet') {
+        stage('Load IronSkillet PAN-OS Snippets') {
             steps {
                 echo "Loading a baseline configuration"
                 sh 'load_baseline.py -i ${PANOS_90_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
-                echo "Baseline configuration is not complete"
+                echo "Baseline configuration is now complete"
                 sh 'load_skillet.py ./templates/panos/snippets -i ${PANOS_90_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
+            }
+        }
+        stage('Load IronSkillet PAN-OS Full Config') {
+            steps {
+                echo "Loading a baseline configuration"
+                sh 'load_baseline.py -i ${PANOS_90_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
+                echo 'Importing and loading full config'
+                sh 'import_and_load_full_config.py template/panos/full -i ${PANOS_90_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
                 echo "Skillet loaded, tests complete"
             }
         }
