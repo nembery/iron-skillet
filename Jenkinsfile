@@ -47,7 +47,7 @@ pipeline {
                 echo "Loading a baseline configuration"
                 sh 'load_baseline.py -i ${PANOS_90_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
                 echo 'Importing and loading full config'
-                sh 'import_and_load_full_config.py template/panos/full -i ${PANOS_90_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
+                sh 'import_and_load_full_config.py templates/panos/full -i ${PANOS_90_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
                 echo "Skillet loaded, tests complete"
             }
         }
