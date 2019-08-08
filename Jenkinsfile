@@ -25,22 +25,21 @@ pipeline {
 
     }
     stages {
-        stage('prepare device') {
+        stage('prepare_device') {
             steps {
-                sh 'echo "Waiting for device to come online"'
+                echo "Waiting for device to come online"
                 sh 'wait_for_device.py -i ${PANOS_90_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
-                sh 'echo "Device is now ready..."'
-                sh 'echo "Loading latest dynamic content"'
+                echo "Device is now ready..."
+                echo "Loading latest dynamic content"
                 sh 'update_dynamic_content.py -i ${PANOS_90_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW} -t content'
-
             }
-        } stage('Loading IronSkillet') {
+        } stage('Load_IronSkillet') {
             steps {
-                sh 'echo "Loading a baseline configuration"'
+                echo "Loading a baseline configuration"
                 sh 'load_baseline.py -i ${PANOS_90_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
-                sh 'echo "Baseline configuration is not complete"'
+                echo "Baseline configuration is not complete"
                 sh 'load_skillet.py ./templates/panos/snippets -i ${PANOS_90_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
-                sh 'echo "Skillet loaded, tests complete"'
+                echo "Skillet loaded, tests complete"
             }
         }
     }
