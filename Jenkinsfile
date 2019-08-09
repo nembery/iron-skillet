@@ -68,9 +68,11 @@ pipeline {
     post {
         success {
             echo 'Iron-Skillet Loaded Successfully'
+            slackSend color: 'good', message: 'Iron-Skillet Load for Branch ${env.BRANCH_NAME} was successful'
         }
         failure {
             echo 'Could not preform load of Iron-Skillet'
+            slackSend color: 'bad', message: 'Iron-Skillet Load for Branch ${env.BRANCH_NAME} failed'
         }
         always {
             echo "Build complete"
