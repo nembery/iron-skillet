@@ -1,14 +1,14 @@
 
 if (env.BRANCH_NAME == '90dev') {
-    def PANOS_IP = 'PANOS_90_IP'
+    def PANOS_VERSION_IP = 'PANOS_90_IP'
 }
 
 if (env.BRANCH_NAME == '81dev') {
-    def PANOS_IP = 'PANOS_81_IP'
+    def PANOS_VERSION_IP = 'PANOS_81_IP'
 }
 
 if (env.BRANCH_NAME == '80dev') {
-    def PANOS_IP = 'PANOS_80_IP'
+    def PANOS_VERSION_IP = 'PANOS_80_IP'
 }
 
 pipeline {
@@ -22,7 +22,7 @@ pipeline {
     }
     environment {
         // Grab our lab rats IP and auth information from the credentials store
-        PANOS_IP        = credentials("${PANOS_IP}")
+        PANOS_IP        = credentials("${PANOS_VERSION_IP}")
         PANOS_AUTH      = credentials('PANOS_AUTH')
         PANOS_GW        = credentials('PANOS_GW')
         PANOS_MASK      = credentials('PANOS_MASK')
