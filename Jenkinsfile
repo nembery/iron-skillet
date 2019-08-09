@@ -1,3 +1,17 @@
+switch (env.BRANCH_NAME) {
+    case '90dev':
+        PANOS_IP        = credentials('PANOS_90_IP')
+        break
+    case '81dev':
+        PANOS_IP        = credentials('PANOS_81_IP')
+        break
+    case '80dev':
+        PANOS_IP        = credentials('PANOS_80_IP')
+        break
+    default:
+        PANOS_IP        = credentials('PANOS_90_IP')
+        break
+}
 
 pipeline {
     agent {
@@ -10,20 +24,7 @@ pipeline {
     }
     environment {
         // Grab our lab rats IP and auth information from the credentials store
-        switch (env.BRANCH_NAME) {
-            case '90dev':
-                PANOS_IP        = credentials('PANOS_90_IP')
-                break
-            case '81dev':
-                PANOS_IP        = credentials('PANOS_81_IP')
-                break
-            case '80dev':
-                PANOS_IP        = credentials('PANOS_80_IP')
-                break
-            default:
-                PANOS_IP        = credentials('PANOS_90_IP')
-                break
-        }
+
         PANOS_AUTH      = credentials('PANOS_AUTH')
         PANOS_GW        = credentials('PANOS_GW')
         PANOS_MASK      = credentials('PANOS_MASK')
