@@ -20,7 +20,7 @@ pipeline {
             case '80dev':
                 PANOS_IP        = credentials('PANOS_80_IP')
                 break
-            case default:
+            default:
                 PANOS_IP        = credentials('PANOS_90_IP')
                 break
         }
