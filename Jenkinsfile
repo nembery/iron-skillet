@@ -1,16 +1,4 @@
 
-if (env.BRANCH_NAME == '90dev') {
-    def PANOS_VERSION_IP = 'PANOS_90_IP'
-}
-
-if (env.BRANCH_NAME == '81dev') {
-    def PANOS_VERSION_IP = 'PANOS_81_IP'
-}
-
-if (env.BRANCH_NAME == '80dev') {
-    def PANOS_VERSION_IP = 'PANOS_80_IP'
-}
-
 pipeline {
     agent {
         docker {
@@ -22,7 +10,20 @@ pipeline {
     }
     environment {
         // Grab our lab rats IP and auth information from the credentials store
-        PANOS_IP        = credentials("${PANOS_VERSION_IP}")
+        switch (env.BRANCH_NAME) {
+            case '90dev':
+                PANOS_IP        = credentials('PANOS_90_IP')
+                break
+            case '81dev':
+                PANOS_IP        = credentials('PANOS_81_IP')
+                break
+            case '80dev':
+                PANOS_IP        = credentials('PANOS_80_IP')
+                break
+            case default:
+                PANOS_IP        = credentials('PANOS_90_IP')
+                break
+        }
         PANOS_AUTH      = credentials('PANOS_AUTH')
         PANOS_GW        = credentials('PANOS_GW')
         PANOS_MASK      = credentials('PANOS_MASK')
