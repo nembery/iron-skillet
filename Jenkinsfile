@@ -28,6 +28,9 @@ pipeline {
         PANOS_AUTH      = credentials('PANOS_AUTH')
         PANOS_GW        = credentials('PANOS_GW')
         PANOS_MASK      = credentials('PANOS_MASK')
+
+        // Grab our auth code to ensure the FW is fully licensed
+        AUTH_CODE      = credentials('VM50_AUTH_CODE')
         // Any variables from the .meta-cnc file will be overridden with values from the environment
         // for this test, we will override the FW_NAME var and network information vars
         FW_NAME         = "test-${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
@@ -45,6 +48,8 @@ pipeline {
                 echo "Waiting for device to come online"
                 sh 'wait_for_device.py -i ${PANOS_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
                 echo "Device is now ready..."
+                sh 'install_license.py -i ${PANOS_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
+                echo "Device is licensed ..."
                 echo "Loading latest dynamic content"
                 sh 'update_dynamic_content.py -i ${PANOS_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW} -t content'
             }
