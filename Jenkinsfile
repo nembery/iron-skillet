@@ -52,6 +52,8 @@ pipeline {
                 echo "Device is licensed ..."
                 echo "Loading latest dynamic content"
                 sh 'update_dynamic_content.py -i ${PANOS_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW} -t content'
+                echo "Loading latest anti-virus dynamic content"
+                sh 'update_dynamic_content.py -i ${PANOS_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW} -t anti-virus'
             }
         }
         stage('Load IronSkillet PAN-OS Snippets') {
