@@ -50,6 +50,8 @@ pipeline {
                 echo "Device is now ready..."
                 sh 'install_license.py -i ${PANOS_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
                 echo "Device is licensed ..."
+                echo "Loading a baseline configuration"
+                sh 'load_baseline.py -i ${PANOS_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
                 echo "Loading latest dynamic content"
                 sh 'update_dynamic_content.py -i ${PANOS_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW} -t content'
                 echo "Loading latest anti-virus dynamic content"
@@ -58,8 +60,6 @@ pipeline {
         }
         stage('Load IronSkillet PAN-OS Snippets') {
             steps {
-                echo "Loading a baseline configuration"
-                sh 'load_baseline.py -i ${PANOS_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
                 echo "Baseline configuration is now complete"
                 sh 'load_skillet.py ./templates/panos/snippets -i ${PANOS_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
             }
