@@ -39,7 +39,7 @@ pipeline {
         MGMT_TYPE               = "static"
         MGMT_IP                 = "${PANOS_IP}"
         MGMT_MASK               = "${PANOS_MASK}"
-        MGMT_DG                 = "${PANOS_GW}"
+        MGMT_DG                 = "${PANOS_LAB_RAT_GW}"
     }
 
     stages {
