@@ -26,7 +26,7 @@ pipeline {
         // Grab our lab rats IP and auth information from the credentials store
         PANOS_IP        = credentials("${PANOS_VERSION_IP_ID}")
         PANOS_AUTH      = credentials('PANOS_LAB_RAT_AUTH')
-        PANOS_GW        = credentials('PANOS_GW')
+        PANOS_GW        = credentials('PANOS_LAB_RAT_GW')
         PANOS_MASK      = credentials('PANOS_MASK')
 
         // Grab our auth code to ensure the FW is fully licensed
@@ -39,7 +39,7 @@ pipeline {
         MGMT_TYPE               = "static"
         MGMT_IP                 = "${PANOS_IP}"
         MGMT_MASK               = "${PANOS_MASK}"
-        MGMT_DG                 = "${PANOS_LAB_RAT_GW}"
+        MGMT_DG                 = "${PANOS_GW}"
     }
 
     stages {
