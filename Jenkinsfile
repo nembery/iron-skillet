@@ -1,6 +1,6 @@
 switch (env.BRANCH_NAME) {
     case '90dev':
-        PANOS_VERSION_IP_ID        = 'PANOS_90_IP'
+        PANOS_VERSION_IP_ID        = 'PANOS_LAB_RAT_IP_1'
         break
     case '81dev':
         PANOS_VERSION_IP_ID        = 'PANOS_81_IP'
@@ -25,7 +25,7 @@ pipeline {
     environment {
         // Grab our lab rats IP and auth information from the credentials store
         PANOS_IP        = credentials("${PANOS_VERSION_IP_ID}")
-        PANOS_AUTH      = credentials('PANOS_AUTH')
+        PANOS_AUTH      = credentials('PANOS_LAB_RAT_AUTH')
         PANOS_GW        = credentials('PANOS_GW')
         PANOS_MASK      = credentials('PANOS_MASK')
 
