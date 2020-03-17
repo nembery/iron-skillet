@@ -51,7 +51,7 @@ pipeline {
                 sh 'install_license.py -i ${PANOS_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
                 echo "Device is licensed ..."
                 echo "waiting for pan services to restart on device ... "
-                sh "sleep 180"
+                sh 'wait_for_device.py -i ${PANOS_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
                 echo "Loading a baseline configuration"
                 sh 'load_baseline.py -i ${PANOS_IP} -u ${PANOS_AUTH_USR} -p ${PANOS_AUTH_PSW}'
                 echo "Loading latest dynamic content"
